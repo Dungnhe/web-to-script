@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang Cá Nhân</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: #0a0a0a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px 50px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 20px #00f2ff88;
+      position: relative;
+      z-index: 2;
+    }
+
+    .clock {
+      font-size: 48px;
+      color: #00aaff;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .icon {
+      width: 60px;
+      height: 60px;
+      background: #1a1a1a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .icon:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 15px #00aaff;
+    }
+
+    .icon img {
+      width: 30px;
+      height: 30px;
+      filter: invert(1);
+    }
+
+    /* Style bảng Script */
+    .script-box {
+      background: #ffe6f0;
+      color: #ff3385;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 30px;
+      border: 2px solid #ff3385;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      font-family: 'Courier New', Courier, monospace;
+      text-align: left;
+      display: none;
+      z-index: 2;
+    }
+
+    .script-box h2 {
+      margin-top: 0;
+      color: #ff3385;
+    }
+
+    .script-content {
+      background: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px dashed #ff3385;
+      font-size: 14px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin-top: 10px;
+    }
+
+    /* Âm nhạc */
+    .music-player {
+      position: absolute;
+      top: -1000px; /* Ẩn */
+      left: -1000px; /* Ẩn */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nhạc YouTube -->
+  <div class="music-player">
+    <iframe width="0" height="0" src="https://www.youtube.com/embed/cuN82OBSD9s?autoplay=1&loop=1&playlist=cuN82OBSD9s" frameborder="0" allow="autoplay"></iframe>
+  </div>
+
+  <div class="container">
+    <div class="clock" id="clock">00:00:00</div>
+    <div class="social-icons">
+      <a href="https://spotify.com" target="_blank" class="icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" alt="Spotify">
+      </a>
+      <a href="https://github.com" target="_blank" class="icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub">
+      </a>
+      <div class="icon" id="youtube-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+      </div>
+      <a href="https://discord.com" target="_blank" class="icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord">
+      </a>
+    </div>
+  </div>
+
+  <!-- Bảng Script -->
+  <div class="script-box" id="script-box">
+    <h2>Script: Turbo Lite</h2>
+    <div class="script-content">
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TurboLite/Script/refs/heads/main/Main.lua"))()
+    </div>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    document.getElementById('youtube-icon').addEventListener('click', function() {
+      const userKey = prompt("Hãy nhập KEY để tiếp tục:");
+      const correctKey = "duytungchimtobucuviethitleson";
+
+      if (userKey === correctKey) {
+        document.querySelector('.container').style.display = 'none'; 
+        document.getElementById('script-box').style.display = 'block';
+      } else {
+        alert("Sai KEY! Không thể truy cập.");
+      }
+    });
+  </script>
+
+</body>
+</html>
